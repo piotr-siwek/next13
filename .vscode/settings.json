@@ -5,14 +5,11 @@
 	"editor.codeActionsOnSave": {
 		"source.fixAll": true
 	},
-	"graphql-config.dotEnvPath": "./.env",
-	"graphql-config.laod.configName": "graphql",
 	"files.associations": {
 		"*.css": "tailwindcss"
 	},
 	"editor.quickSuggestions": {
 		"strings": true
 	},
-	"typescript.format.enable": true,
-	"eslint.format.enable": true
+	"typescript.format.enable": true
 }

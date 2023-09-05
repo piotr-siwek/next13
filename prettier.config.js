@@ -1,5 +1,5 @@
 module.exports = {
-	semi: true, // średnik
+	semi: true,
 	singleQuote: false,
 	trailingComma: "all",
 	printWidth: 100,
