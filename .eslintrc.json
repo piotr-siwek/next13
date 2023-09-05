@@ -41,7 +41,12 @@
 			}
 		],
 
-		"import/no-duplicates": ["error", { "prefer-inline": true }],
+		"import/no-duplicates": [
+			"error",
+			{
+				"prefer-inline": true
+			}
+		],
 
 		// false negatives
 		"import/namespace": ["off"],
@@ -62,13 +67,19 @@
 		// allow unused vars prefixed with `_`
 		"@typescript-eslint/no-unused-vars": [
 			"error",
-			{ "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+			{
+				"argsIgnorePattern": "^_",
+				"varsIgnorePattern": "^_"
+			}
 		],
 
 		// numbers and booleans are fine in template strings
 		"@typescript-eslint/restrict-template-expressions": [
 			"error",
-			{ "allowNumber": true, "allowBoolean": true }
+			{
+				"allowNumber": true,
+				"allowBoolean": true
+			}
 		]
 	},
 	"overrides": [

@@ -12,5 +12,7 @@
 	},
 	"editor.quickSuggestions": {
 		"strings": true
-	}
+	},
+	"typescript.format.enable": true,
+	"eslint.format.enable": true
 }
