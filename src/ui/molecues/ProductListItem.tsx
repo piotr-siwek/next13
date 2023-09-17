@@ -1,30 +1,26 @@
+import Link from "next/link";
+
+import { type Product } from "@/app/types/product";
 import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
 import { ProductListItemDescription } from "@/ui/atoms/ProductListItemDescription";
-
 interface ProductListItemProps {
-	product: {
-		id: string;
-		name: string;
-		category: string;
-		price: number;
-		coverImage: {
-			src: string;
-			alt: string;
-		};
-	};
+	product: Product;
 }
 
 export const ProductListItem = ({ product }: ProductListItemProps) => {
+	console.log({ product });
 	return (
 		<li>
-			<article>
-				<ProductCoverImage src={product.coverImage.src} alt={product.coverImage.alt} />
-				<ProductListItemDescription
-					name={product.name}
-					category={product.category}
-					price={product.price}
-				/>
-			</article>
+			<Link href={`/products/product/${product.id}`}>
+				<article>
+					<ProductCoverImage src={product.image} alt={product.title} />
+					<ProductListItemDescription
+						name={product.title}
+						category={product.category}
+						price={product.price}
+					/>
+				</article>
+			</Link>
 		</li>
 	);
 };
