@@ -1,0 +1,17 @@
+query CollectionsGetSingleOpne($slug: String) {
+	collections(where: { slug: $slug }) {
+		id
+		name
+		slug
+		description
+		products {
+			id
+			name
+			description
+			price
+			images {
+				url
+			}
+		}
+	}
+}

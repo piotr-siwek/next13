@@ -1,10 +1,10 @@
-import { type Product } from "../types/product";
+import { executeGraphql } from "./utils";
+import { ProductGetSingleOneDocument } from "@/gql/graphql";
 
 export const getProduct = async (id: string) => {
 	try {
-		const resp = await fetch(`https://naszsklep-api.vercel.app/api/products/${id}`);
-		const data = (await resp.json()) as Product;
-		return data;
+		const graphqlResponse = await executeGraphql(ProductGetSingleOneDocument, { id });
+		return graphqlResponse.product;
 	} catch (error) {
 		console.log(error);
 	}

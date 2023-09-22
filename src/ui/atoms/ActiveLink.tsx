@@ -1,26 +1,33 @@
 "use client";
 
-import { type Route } from "next";
 import Link, { type LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
 
-interface ActiveLinkProps extends LinkProps<Route<string>> {
+type ActiveLinkProps<Href> = {
+	activeClassName: string;
 	className?: string;
-	activeClassName?: string;
-}
+	exact?: boolean;
+	children: React.ReactNode;
+} & LinkProps<Href>;
 
-export const ActiveLink = ({ className, activeClassName, ...linkProps }: ActiveLinkProps) => {
+export const ActiveLink = <THref extends string>({
+	className,
+	activeClassName,
+	href,
+	exact = false,
+	...linkProps
+}: ActiveLinkProps<THref>) => {
 	const pathname = usePathname();
+	const isActive =
+		pathname === href || (!exact && typeof href === "string" && pathname.startsWith(href));
 
-	console.log({
-		linkProps,
-		pathname,
-	});
 	return (
 		<Link
 			{...linkProps}
 			role="link"
-			className={`${className} ${linkProps.href === pathname ? activeClassName : ""}`}
+			href={href}
+			aria-current={isActive ? true : undefined}
+			className={`${className} ${isActive ? activeClassName : ""}`}
 		/>
 	);
 };

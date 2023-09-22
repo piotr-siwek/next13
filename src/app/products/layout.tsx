@@ -1,5 +1,5 @@
-import { type ReactNode } from "react";
 import { Pagination } from "@/ui/organisms/Pagination";
+import { type ReactNode } from "react";
 
 const ProjectsLayout = ({ children }: { children: ReactNode }) => {
 	return (

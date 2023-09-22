@@ -1,8 +1,8 @@
 import { PaginationItem } from "../molecues/PaginationItem";
-import { getProductsPages } from "@/app/actions/getProductsPages";
+import { getProductsPagesGraphQL } from "@/app/actions/getProductsPages";
 
 export const Pagination = async () => {
-	const pages = await getProductsPages();
+	const pages = await getProductsPagesGraphQL();
 
 	if (!pages) return null;
 

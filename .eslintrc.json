@@ -13,9 +13,6 @@
 		"next/core-web-vitals"
 	],
 	"rules": {
-		// sort imports
-		"import/order": "error",
-
 		// no let exports
 		"import/no-mutable-exports": "error",
 
@@ -79,6 +76,14 @@
 			{
 				"allowNumber": true,
 				"allowBoolean": true
+			}
+		],
+
+		"no-restricted-imports": [
+			"error",
+			{
+				"name": "next/router",
+				"message": "Please use `next/navigation` instead."
 			}
 		]
 	},

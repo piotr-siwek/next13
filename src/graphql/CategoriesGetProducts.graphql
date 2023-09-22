@@ -1,0 +1,8 @@
+query CategoriesGetProducts($slug: String, $skip: Int = 0, $take: Int = 1) {
+	categories(where: { slug: $slug }) {
+		id
+		products(first: $take, skip: $skip) {
+			...ProductListItem
+		}
+	}
+}

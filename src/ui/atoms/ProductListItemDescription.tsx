@@ -2,6 +2,7 @@ interface ProductListItemDescriptionProps {
 	name: string;
 	category: string;
 	price: number;
+	description?: string;
 }
 
 const formatPrice = (price: number) => {
@@ -15,6 +16,7 @@ export const ProductListItemDescription = ({
 	name,
 	category,
 	price,
+	description,
 }: ProductListItemDescriptionProps) => {
 	return (
 		<div className="mt-2 flex justify-between">
@@ -30,6 +32,7 @@ export const ProductListItemDescription = ({
 				<span className="sr-only">Cena:</span>
 				{formatPrice(price)}
 			</p>
+			<p>{description}</p>
 		</div>
 	);
 };

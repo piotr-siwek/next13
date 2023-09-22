@@ -1,0 +1,5 @@
+query ProductGetSingleOne($id: ID) {
+	product(where: { id: $id }) {
+		...ProductListItem
+	}
+}
