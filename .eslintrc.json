@@ -70,6 +70,13 @@
 			}
 		],
 
+		"@typescript-eslint/no-misused-promises": [
+			"error",
+			{
+				"checksVoidReturn": false
+			}
+		],
+
 		// numbers and booleans are fine in template strings
 		"@typescript-eslint/restrict-template-expressions": [
 			"error",

@@ -1,16 +1,11 @@
+import { formatMoney } from "@/utils/formatMoney";
+
 interface ProductListItemDescriptionProps {
 	name: string;
 	category: string;
 	price: number;
 	description?: string;
 }
-
-const formatPrice = (price: number) => {
-	return new Intl.NumberFormat("en-US", {
-		style: "currency",
-		currency: "USD",
-	}).format(price);
-};
 
 export const ProductListItemDescription = ({
 	name,
@@ -30,7 +25,7 @@ export const ProductListItemDescription = ({
 			</div>
 			<p className="text-sm font-medium text-gray-900">
 				<span className="sr-only">Cena:</span>
-				{formatPrice(price)}
+				{formatMoney(price)}
 			</p>
 			<p>{description}</p>
 		</div>
