@@ -11,10 +11,13 @@ export const getCategoryProducts = async ({
 	skip?: number;
 }) => {
 	try {
-		const graphqlResponse = await executeGraphql(CategoriesGetProductsDocument, {
-			take,
-			skip,
-			slug,
+		const graphqlResponse = await executeGraphql({
+			query: CategoriesGetProductsDocument,
+			variables: {
+				take,
+				skip,
+				slug,
+			},
 		});
 		return graphqlResponse.categories[0].products;
 	} catch (error) {
