@@ -15,7 +15,6 @@ const CategoryLayout = async ({
 	});
 	if (!items) return null;
 	const pages = new Array(Math.ceil(items.length / 5)).fill(null).map((_, i) => i + 1);
-	console.log({ pages });
 	return (
 		<div>
 			<h1>

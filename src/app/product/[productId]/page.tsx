@@ -43,6 +43,29 @@ const ProductPage = async ({ params: { productId } }: { params: { productId: str
 				<input type="hidden" value={product.id} name="productId" />
 				<AddToCartButton />
 			</form>
+
+			<form id="add-review-form" data-testid="add-review-form">
+				<label>
+					Headline
+					<input type="text" name="headline" />
+				</label>
+				<label>
+					Content
+					<input type="text" name="content" />
+				</label>
+				<label>
+					Rating
+					<input type="text" name="rating" />
+				</label>
+				<label>
+					Name
+					<input type="text" name="name" />
+				</label>
+				<label>
+					Email
+					<input type="text" name="email" />
+				</label>
+			</form>
 		</main>
 	);
 };

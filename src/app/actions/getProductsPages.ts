@@ -32,7 +32,6 @@ export const getProductsPagesGraphQL = async () => {
 		);
 
 		const { data } = (await resp.json()) as { data: { products: Product[] } };
-		console.log(data.products.length);
 		return new Array(Math.ceil(data.products.length / 5)).fill(null).map((_, i) => i + 1);
 	} catch (error) {
 		console.log(error);

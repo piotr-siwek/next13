@@ -25,7 +25,8 @@ export const ProductListItemDescription = ({
 			</div>
 			<p className="text-sm font-medium text-gray-900">
 				<span className="sr-only">Cena:</span>
-				{formatMoney(price)}
+				<span data-testid="product-price"> {formatMoney(price)}</span>
+				<span data-testid="product-rating"> {price}</span>
 			</p>
 			<p>{description}</p>
 		</div>

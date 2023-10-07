@@ -18,6 +18,7 @@ const documents = {
     "mutation CartCreate {\n  createOrder(data: {total: 0}) {\n    ...CartFragment\n  }\n}": types.CartCreateDocument,
     "fragment CartFragment on Order {\n  id\n  orderItems {\n    id\n    quantity\n    total\n    product {\n      id\n      name\n      price\n    }\n  }\n}": types.CartFragmentFragmentDoc,
     "query CartGetById($id: ID) {\n  order(where: {id: $id}, stage: DRAFT) {\n    ...CartFragment\n  }\n}": types.CartGetByIdDocument,
+    "mutation CartRemoveProduct($id: ID!) {\n  deleteOrderItem(where: {id: $id}) {\n    id\n  }\n}": types.CartRemoveProductDocument,
     "mutation CartSetProductQuantity($id: ID!, $quantity: Int!) {\n  updateOrderItem(where: {id: $id}, data: {quantity: $quantity}) {\n    id\n    quantity\n  }\n}": types.CartSetProductQuantityDocument,
     "query CategoriesGetList {\n  categories {\n    id\n    name\n    slug\n  }\n}": types.CategoriesGetListDocument,
     "query CategoriesGetProducts($slug: String, $skip: Int = 0, $take: Int = 1) {\n  categories(where: {slug: $slug}) {\n    id\n    products(first: $take, skip: $skip) {\n      ...ProductListItem\n    }\n  }\n}": types.CategoriesGetProductsDocument,
@@ -26,7 +27,7 @@ const documents = {
     "fragment ProductListItem on Product {\n  id\n  name\n  description\n  categories(first: 1) {\n    name\n  }\n  images(first: 1) {\n    url\n  }\n  price\n}": types.ProductListItemFragmentDoc,
     "query ProductsGetListBySearch($searchTerm: String) {\n  products(where: {_search: $searchTerm}) {\n    ...ProductListItem\n  }\n}": types.ProductsGetListBySearchDocument,
     "query ProductGetSingleOne($id: ID) {\n  product(where: {id: $id}) {\n    ...ProductListItem\n  }\n}": types.ProductGetSingleOneDocument,
-    "query ProductsGetList($first: Int, $skip: Int = 0) {\n  products(first: $first, skip: $skip) {\n    ...ProductListItem\n  }\n}": types.ProductsGetListDocument,
+    "query ProductsGetList($first: Int, $skip: Int = 0, $orderBy: ProductOrderByInput) {\n  products(first: $first, skip: $skip, orderBy: $orderBy) {\n    ...ProductListItem\n  }\n}": types.ProductsGetListDocument,
 };
 
 /**
@@ -45,6 +46,10 @@ export function graphql(source: "fragment CartFragment on Order {\n  id\n  order
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query CartGetById($id: ID) {\n  order(where: {id: $id}, stage: DRAFT) {\n    ...CartFragment\n  }\n}"): typeof import('./graphql').CartGetByIdDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation CartRemoveProduct($id: ID!) {\n  deleteOrderItem(where: {id: $id}) {\n    id\n  }\n}"): typeof import('./graphql').CartRemoveProductDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -80,7 +85,7 @@ export function graphql(source: "query ProductGetSingleOne($id: ID) {\n  product
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query ProductsGetList($first: Int, $skip: Int = 0) {\n  products(first: $first, skip: $skip) {\n    ...ProductListItem\n  }\n}"): typeof import('./graphql').ProductsGetListDocument;
+export function graphql(source: "query ProductsGetList($first: Int, $skip: Int = 0, $orderBy: ProductOrderByInput) {\n  products(first: $first, skip: $skip, orderBy: $orderBy) {\n    ...ProductListItem\n  }\n}"): typeof import('./graphql').ProductsGetListDocument;
 
 
 export function graphql(source: string) {

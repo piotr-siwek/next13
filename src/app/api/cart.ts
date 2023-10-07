@@ -1,3 +1,5 @@
+"use server";
+
 import {
 	CartAddProductDocument,
 	CartCreateDocument,
@@ -8,16 +10,13 @@ import {
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { changeItemQuantity } from "../actions/changeItemQuantity";
+import { deleteItemFromCart } from "../actions/deleteItemFromCart";
 import { executeGraphql } from "../actions/utils";
 
 export const addToCardAction = async (form: FormData) => {
-	"use server";
-
-	console.log(form);
 	const cart = await getOrCreateCart();
 	const item = cart.orderItems?.find((item) => item.product?.id === form.get("productId"));
 	if (item) {
-		console.log("hasItem");
 		await changeItemQuantity(item.id, item.quantity + 1);
 	} else {
 		await addToCart(cart.id, form.get("productId") as string);
@@ -25,9 +24,21 @@ export const addToCardAction = async (form: FormData) => {
 	revalidateTag("cart");
 };
 
-export const getCardFromCookies = async () => {
-	"use server";
+export const removeFromCartAction = async (productId: string) => {
+	console.log("1");
+	const cart = await getCardFromCookies();
+	if (!cart) return;
+	console.log("2");
+	const item = cart.orderItems?.find((item) => item.id === productId);
+	if (!item) return;
+	console.log("3");
+	const result = await deleteItemFromCart(item.id);
+	console.log("4", result);
+	revalidateTag("cart");
+	// revalidatePath("/cart");
+};
 
+export const getCardFromCookies = async () => {
 	const cartId = cookies().get("cartId")?.value;
 	if (!cartId) return null;
 

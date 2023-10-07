@@ -1,0 +1,15 @@
+import { CartRemoveProductDocument } from "@/gql/graphql";
+import { executeGraphql } from "./utils";
+
+export const deleteItemFromCart = async (id: string) => {
+	await executeGraphql({
+		query: CartRemoveProductDocument,
+		variables: {
+			id,
+		},
+		cache: "no-cache",
+		headers: {
+			authorization: `Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdjbXMtbWFpbi1wcm9kdWN0aW9uIn0.eyJ2ZXJzaW9uIjozLCJpYXQiOjE2OTU2NjI3OTgsImF1ZCI6WyJodHRwczovL2FwaS1ldS1jZW50cmFsLTEtc2hhcmVkLWV1YzEtMDIuaHlncmFwaC5jb20vdjIvY2xtejV1ZjF1MG8yMTAxdDQzdTAwN203cS9tYXN0ZXIiLCJtYW5hZ2VtZW50LW5leHQuZ3JhcGhjbXMuY29tIl0sImlzcyI6Imh0dHBzOi8vbWFuYWdlbWVudC5ncmFwaGNtcy5jb20vIiwic3ViIjoiNTdhMjk5ZjMtZDBjZS00MDQ0LTkzYzAtNzNjNTgxMDJkNmY1IiwianRpIjoiY2tsdXpicmxwNW9sOTAxeHY3MzI1OHRqZCJ9.KFUoUqxaD-hye7_cBzJ3c5-aGmikmgancDa7EucG8ueSvhesp6aCKC8hR-T8tG9w-xqwmGIPJPyW8pDaBEDRY3FVEI3UUOzKfuGgqNKYIZd1-rKnXQAdmSaGqFEzidgzGbxhUl5PDriDrmX-V1DnwgcSDFvlHy2GTiKxybhefhUKOxZhvi-rUnkkduDPWHT4k7hTJ1mfNWiI_gi_rgUBUCFQLP4ltaMfiqdljnPPz7wkC6lc4ou7HGWh8WBURE5jtRMPaUSiMZ2WHiobsl6tIgcWiCPInjNlI6dDhI33qN2lYiJPyxMDmatt4pm1AzW_R0vaVFKDCOw9wtEZQu5Ho4fd9iv09v9ZDG18KfzutJJsX6tAwDdeATee7y-DtNhBTpicfMrQIi21n3yOVmzGYb4HE3bhkudyfABym7oq7uGEjjUAsDawB_eZIv1K_-H4zhSBpMoftXiMFxyzk7IHzq2tm2glNpOIa3apzRx5lg-VrmQVNLKo2bIV-kmqzmxv6Lht4HgbpBredy4DE6ryQAoVy0PW84OW2Ob_OJrjb8F5svBOILKel0mxSgzlC2B005DEkVAfbPimIEtMemk5ZTkoUzXgxVKSDuza9tY4L81la72jJi3kq6l4-Ci4P_O5PxFbgeaucYfgxHwnxxmU6VW6m6yWFbrvONsjOGD13Dg`,
+		},
+	});
+};

@@ -1,6 +1,7 @@
 import { CartGetByIdDocument } from "@/gql/graphql";
 
 import { IncrementProductQuantity } from "@/ui/atoms/IncrementProductQuantity";
+import { RemoveFromCartButton } from "@/ui/atoms/RemoveFromCartButton";
 import { formatMoney } from "@/utils/formatMoney";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -18,6 +19,10 @@ export default async function CartPage() {
 		variables: {
 			id: cartId,
 		},
+		next: {
+			tags: ["cart"],
+		},
+		cache: "no-cache",
 	});
 
 	if (!cart) {
@@ -47,6 +52,7 @@ export default async function CartPage() {
 									<IncrementProductQuantity quantity={item.quantity} itemId={item.id} />
 								</td>
 								<td>{formatMoney(item.product.price)}</td>
+								<RemoveFromCartButton productId={item.id} />
 							</tr>
 						);
 					})}

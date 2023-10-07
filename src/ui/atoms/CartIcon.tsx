@@ -4,7 +4,6 @@ import Link from "next/link";
 export const CartIcon = async () => {
 	const cart = await getCardFromCookies();
 	const quantity = cart?.orderItems.reduce((acc, item) => acc + item.quantity, 0);
-	console.log({ cart });
 	return (
 		<Link href="/cart" className="flex h-10 w-10">
 			<svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

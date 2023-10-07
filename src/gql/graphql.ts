@@ -10770,6 +10770,13 @@ export type CartGetByIdQueryVariables = Exact<{
 
 export type CartGetByIdQuery = { order?: { id: string, orderItems: Array<{ id: string, quantity: number, total: number, product?: { id: string, name: string, price: number } | null }> } | null };
 
+export type CartRemoveProductMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type CartRemoveProductMutation = { deleteOrderItem?: { id: string } | null };
+
 export type CartSetProductQuantityMutationVariables = Exact<{
   id: Scalars['ID']['input'];
   quantity: Scalars['Int']['input'];
@@ -10823,6 +10830,7 @@ export type ProductGetSingleOneQuery = { product?: { id: string, name: string, d
 export type ProductsGetListQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ProductOrderByInput>;
 }>;
 
 
@@ -10918,6 +10926,13 @@ export const CartGetByIdDocument = new TypedDocumentString(`
     }
   }
 }`) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
+export const CartRemoveProductDocument = new TypedDocumentString(`
+    mutation CartRemoveProduct($id: ID!) {
+  deleteOrderItem(where: {id: $id}) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartRemoveProductMutation, CartRemoveProductMutationVariables>;
 export const CartSetProductQuantityDocument = new TypedDocumentString(`
     mutation CartSetProductQuantity($id: ID!, $quantity: Int!) {
   updateOrderItem(where: {id: $id}, data: {quantity: $quantity}) {
@@ -11021,8 +11036,8 @@ export const ProductGetSingleOneDocument = new TypedDocumentString(`
   price
 }`) as unknown as TypedDocumentString<ProductGetSingleOneQuery, ProductGetSingleOneQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList($first: Int, $skip: Int = 0) {
-  products(first: $first, skip: $skip) {
+    query ProductsGetList($first: Int, $skip: Int = 0, $orderBy: ProductOrderByInput) {
+  products(first: $first, skip: $skip, orderBy: $orderBy) {
     ...ProductListItem
   }
 }
