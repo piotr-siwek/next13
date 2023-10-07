@@ -8,7 +8,8 @@ export const SortyByPrice = () => {
 		<select
 			className="w-full rounded-md border bg-slate-700 px-8 py-3 text-white disabled:cursor-wait disabled:bg-slate-400"
 			onChange={(event) => {
-				router.push(`/products/?orderBy=${event.target.value}`);
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				router.push(`/products/?orderBy=${event.target.value}` as any);
 			}}
 		>
 			<option value="price_DESC" data-testid="sort-by-price">
@@ -25,7 +26,8 @@ export const SortyByRating = () => {
 		<select
 			className="w-full rounded-md border bg-slate-700 px-8 py-3 text-white disabled:cursor-wait disabled:bg-slate-400"
 			onChange={(event) => {
-				router.push(`/products/?orderBy=${event.target.value}`);
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				router.push(`/products/?orderBy=${event.target.value}` as any);
 			}}
 		>
 			<option value="price_DESC">Rating DESC</option>

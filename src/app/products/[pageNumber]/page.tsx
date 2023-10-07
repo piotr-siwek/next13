@@ -1,4 +1,5 @@
-import { getProductsList, type OrderBy } from "@/app/actions/getProductsList";
+import { getProductsList } from "@/app/actions/getProductsList";
+import { type ProductOrderByInput } from "@/gql/graphql";
 import { ProductsList } from "@/ui/organisms/ProductsList";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -8,7 +9,7 @@ const ProductsPage = async ({
 	searchParams: { orderBy },
 }: {
 	params: { pageNumber: string; orderBy?: string };
-	searchParams: { orderBy?: OrderBy };
+	searchParams: { orderBy?: ProductOrderByInput };
 }) => {
 	const products = await getProductsList(+pageNumber, 5, orderBy);
 	if (!products) notFound();
